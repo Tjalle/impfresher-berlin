@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Impfresher Berlin</title>
+
+    <script language="javascript">
+        const TIMER_BOT_FETCH = 20 * 1000 // 20 seconds
+
+        const urls = {
+            arena: 'https://bit.ly/2PL4I8J',
+            tempelhof: 'https://bit.ly/2PONurc',
+            messe: 'https://bit.ly/3b0xCJr',
+            velodrom: 'https://bit.ly/3thD8h7',
+            tegel: 'https://bit.ly/3eeAIeT',
+            erika: 'https://bit.ly/2QIki5J',
+        }
+
+        async function readData() {
+
+            console.log("ik leef nog");
+            actie = document.getElementById('actie')
+            //actie.removeChild(actie.childNodes);
+            actie.innerHTML = "";
+            actie.style.backgroundColor = "grey";
+
+            let url = 'https://api.impfstoff.link/?robot=1';
+            var opts = {
+                headers: {
+                    'mode':'no-cors'
+                }
+            }
+            let response = await fetch(url,opts);
+
+            let terminen = await response.json(); // read response body and parse as JSON
+
+            terminen.stats.forEach(element => checkAvailability(element));
+        }
+
+        function checkAvailability(element){
+
+            let current = new Date();
+            let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
+            div = document.createElement('div');
+            if(element.open){
+                actie.style.backgroundColor = "#2ca02c";
+                document.getElementById(element.id).textContent="GO GO GO";
+
+                // ADD THE LINKS TO THE TOP
+                div = document.createElement('div');
+                div.id = "direct_"+element.id;
+                link = document.createElement('a');
+                link.href = urls[element.id];
+                link.textContent = element.name;
+                link.target = '_blank';
+                div.appendChild(link)
+                document.getElementById('actie').appendChild(div);
+                //Archieflijst maken.
+                div2 = div.cloneNode(true);
+                span = document.createElement("span");
+
+                span.textContent = " ("+cTime+")";
+                div2.appendChild(span)
+                document.getElementById('archief').appendChild(div2);
+                play();
+                window.open(urls[element.id]);
+            }else{
+                //  console.log(typeof document.getElementById("direct_"+element.id));
+
+                document.getElementById(element.id).textContent="nowp";
+            }
+            document.getElementById('last_update').textContent = "last update: "+cTime;
+
+        }
+
+        window.onload = function(){
+            readData();
+
+            setInterval(function(){
+                readData()
+            }, TIMER_BOT_FETCH)
+        }
+
+        function play() {
+            var audio = new Audio('impfding.mp3');
+            audio.play();
+        }
+
+    </script>
+    <style>
+        body{
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size:1em;
+        }
+        #actie{
+            font-size:2em;
+            background-color: grey;
+            color:#afd9ee;
+            min-height:200px;
+            padding:20px;
+        }
+        #actie a{
+            color:red;
+        }
+
+        .impfcenter{
+            margin-left:5px;
+            margin-top:10px;
+        }
+        #last_update{
+            margin-top:5px;
+            font-size: 0.8em;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="actie"></div>
+<div id="last_update"></div>
+<h2>Impfcenters</h2>
+<div class="impfcenter">
+    <span id="arena">nope</span> - <a href="https://bit.ly/2PL4I8J" target="_blank">Arena</a>
+</div>
+<div class="impfcenter">
+    <span id="tempelhof">nope</span> - <a href="https://bit.ly/2PONurc" target="_blank">Tempelhof</a>
+</div>
+<div class="impfcenter">
+    <span id="tempelhof2">nope</span> - <a href="https://www.doctolib.de/institut/berlin/ciz-berlin-berlin?pid=practice-191611" target="_blank">Tempelhof Moderna</a>
+</div>
+<div class="impfcenter">
+    <span id="messe">nope</span> - <a href="https://bit.ly/3b0xCJr" target="_blank">Messe</a>
+</div>
+<div class="impfcenter">
+    <span id="velodrom">nope</span> - <a href="https://bit.ly/3thD8h7" target="_blank">Velodrom</a>
+</div>
+<div class="impfcenter">
+    <span id="tegel">nope</span> - <a href="https://bit.ly/3eeAIeT" target="_blank">Tegel</a>
+</div>
+<div class="impfcenter">
+    <span id="tegel2">nope</span> - <a href="https://www.doctolib.de/institut/berlin/ciz-berlin-berlin?pid=practice-191612" target="_blank">Tegel Moderna</a>
+</div>
+<div class="impfcenter">
+    <span id="erika">nope</span> - <a href="https://bit.ly/2QIki5J" target="_blank">Erika</a>
+</div>
+
+<h2>Archiv</h2>
+<div id="archief"></div>
+
+
+</body>
+</html>
