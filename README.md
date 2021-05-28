@@ -4,6 +4,7 @@ Quick &amp; dirty impftermin checker for doctolib
 Absolutely no responsibility on getting it to work on your machine.
 
 Using the impfstoff.link API & a free sound fx.
+https://impfstoff.link/
 
 The page will request open appointsments every 15 seconds & keep a log of active Termins.
 When a Termin oppertunity opens up in one of the vaccination centers - it will show the link, play a sound & open a tab in doctolib.
@@ -23,3 +24,5 @@ I have used no node or other framework, just very basic html & javascript to get
 
 => The API fetching data is not mine, just using what is out there.
 Check https://github.com/guicheffer/impfstoff.bot for a bot you can run on twitter/telegram.
+
+Also note - at the moment there are hardly any appointments available.
