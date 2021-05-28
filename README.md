@@ -6,7 +6,7 @@ Absolutely no responsibility on getting it to work on your machine.
 Using the impfstoff.link API & a free sound fx.
 https://impfstoff.link/
 
-The page will request open appointsments every 15 seconds & keep a log of active Termins.
+The page will request open appointments every 15 seconds & keep a log of active Termins.
 When a Termin oppertunity opens up in one of the vaccination centers - it will show the link, play a sound & open a tab in doctolib.
 
 Very basic, no security or specials features - there are many better options available.
