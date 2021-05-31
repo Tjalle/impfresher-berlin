@@ -9,7 +9,7 @@ https://impfstoff.link/
 The page will request open appointments every 15 seconds & keep a log of active Termins.
 When a Termin oppertunity opens up in one of the vaccination centers - it will show the link, play a sound & open a tab in doctolib.
 
-Very basic, no security or specials features - there are many better options available.
+Very basic, no security or specials features - there are many better ways possible.
 But this works for me.
 
 Tips : 
