@@ -1,6 +1,6 @@
-# THE impfstoff.link API has been taken offline - this does not work anymore!
---
-# impfresher-berlin
+# The impfstoff.link API has been taken offline - this does not work anymore!
+
+## impfresher-berlin
 Quick &amp; dirty impftermin checker for doctolib
 
 Absolutely no responsibility on getting it to work on your machine.
